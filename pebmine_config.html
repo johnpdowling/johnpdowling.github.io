@@ -42,6 +42,11 @@
         </label>
         <br/>
         <label class='item'>
+          API Key
+          <input id='api_key_text' type='text' class='item-color item-color-sunny' value=''>
+        </label>
+        <br/>
+        <label class='item'>
           Use HTTPS?
           <input id='https_checkbox' type='checkbox' class='item-toggle'>
         </label>
@@ -58,16 +63,19 @@
   function getConfigData() {
     var serverNameBox = document.getElementById('server_name_text');
     var serverAddressBox = document.getElementById('server_address_text');
+    var apiKeyBox = document.getElementById('api_key_text');
     var useHttpsCheck = document.getElementById('https_checkbox');
 
     var options = {
       'server_name': serverNameBox.value,
       'server_address': serverAddressBox.value,
+      'api_key': apiKeyBox.value,
       'use_https': useHttpsCheck.checked
     };
     // Save for next launch
     localStorage['server_name'] = options['server_name'];
     localStorage['server_address'] = options['server_address'];
+    localStorage['api_key'] = options['api_key'];
     localStorage['use_https'] = options['use_https'];
     
     console.log('Got options: ' + JSON.stringify(options));
@@ -95,6 +103,7 @@
   (function() {
     var serverNameBox = document.getElementById('server_name_text');
     var serverAddressBox = document.getElementById('server_address_text');
+    var apiKeyBox = document.getElementById('api_key_box');
     var useHttpsCheck = document.getElementById('https_checkbox');
 
     // Load any previously saved configuration, if available
@@ -102,6 +111,7 @@
       useHttpsCheck.checked = JSON.parse(localStorage['use_https']);
       serverNameBox.value = localStorage['server_name'];
       serverAddressBox.value = localStorage['server_address'];
+      apiKeyBox.value = localStorage['api_key'];
     }
   })();
   </script>
